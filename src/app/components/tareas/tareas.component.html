@@ -1,0 +1,47 @@
+<div class="container mt-5">
+    <div class="row">
+        <h3 class="text-center">Tareas app</h3>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2 mb-4">
+            <input type="text" (keyup.enter)="agregarTarea()" [(ngModel)]="tarea" class="form-control text-center" placeholder="Ingresar tarea">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
+            <h3>Tareas pendientes</h3>
+            <div cdkDropList class="example-list"
+             id="pendientes"
+             [cdkDropListData]="pendientes"
+             [cdkDropListConnectedTo]="['en-progreso']" 
+             (cdkDropListDropped)="drop($event)">
+                <div class="example-box" *ngFor="let item of pendientes;let i = index" cdkDrag>
+                   <span>{{item}}</span> 
+                   <span  class="eliminar" (click) ="eliminarTareaPendientes(i)">x</span>
+                </div>
+               
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <h3>En progreso</h3>
+            <div cdkDropList class="example-list"  [cdkDropListConnectedTo]="['pendientes','finalizadas']"  id="en-progreso" [cdkDropListData]="enProgreso" (cdkDropListDropped)="drop($event)">
+                <div class="example-box" *ngFor="let item of enProgreso;let i = index" cdkDrag>
+                    <span>{{item}}</span>
+                    
+                    <span  class="eliminar" (click) ="eliminarTareaProgreso(i)">x</span>
+                </div>
+            </div>
+        </div>
+    
+        <div class="col-lg-4">
+            <h3>Finalizadas</h3>
+            <div cdkDropList class="example-list" id="finalizadas"  [cdkDropListConnectedTo]="['en-progreso']" [cdkDropListData]="finalizadas"  (cdkDropListDropped)="drop($event)">
+                <div class="example-box" *ngFor="let item of finalizadas;let i = index" cdkDrag>
+                   <span class="listo">{{item}}</span> 
+                   <span class="eliminar" (click) ="eliminarTareaFinalizada(i)">x</span>
+                </div>
+            </div>
+        </div>
+    </div>
+   </div>
+

@@ -1,0 +1,15 @@
+input{
+    padding: 10px 20px;
+}
+h3{
+    color: white;
+}
+.eliminar{
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 18px;
+}
+.listo{
+    text-decoration: line-through;
+}
